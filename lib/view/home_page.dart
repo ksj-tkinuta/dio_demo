@@ -1,8 +1,11 @@
+import 'package:dio_demo/view/wine_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../view_model/provider.dart';
 import '../model/coffee.dart'; // Coffeeモデルのimportが必要です
+
+int _selectedIndex = 0; // BottomNavigationBarの選択インデックス
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -67,6 +70,45 @@ class HomePage extends ConsumerWidget {
           ),
           error: (error, _) => Text(error.toString()),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_cafe),
+            label: 'Coffee',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wine_bar),
+            label: 'Wine',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt),
+            label: 'Recipe',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          // BottomNavigationBarアイテムがタップされたときの処理
+          switch (index) {
+            case 0:
+            // Coffeeアイテムがタップされたときの処理
+              Navigator.pushNamed(context, '/coffee_screen');
+              break;
+            case 1:
+            // Wineアイテムがタップされたときの処理
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const WinePage()),
+              );
+              break;
+            case 2:
+            // Recipeアイテムがタップされたときの処理
+              Navigator.pushNamed(context, '/recipe_screen');
+              break;
+            default:
+              break;
+          }
+        },
       ),
     );
   }
