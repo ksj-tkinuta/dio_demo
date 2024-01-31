@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WineScreen extends StatelessWidget {
@@ -10,7 +11,28 @@ class WineScreen extends StatelessWidget {
         title: const Text('Wine Page'),
       ),
       body: Center(
-        child: Image.asset('assets/images/wine_image.png'), // ワイン画像のパス
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset(
+              'assets/images/wine_image.png', // ワイン画像のパス
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            const Positioned(
+              bottom: 200, // 下から200dp配置
+              child: Text(
+                '準備中',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

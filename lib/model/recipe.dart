@@ -10,6 +10,8 @@ class Recipe with _$Recipe {
   factory Recipe({
     String? title,
     String? course,
+    String? directions,
+    String? photoUrl,
   }) = _Recipe;
 
   factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);

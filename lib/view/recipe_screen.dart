@@ -26,12 +26,40 @@ class RecipeScreen extends StatelessWidget {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            // SimpleDialogからAlertDialogに変更
                             title: Text(
                               recipe.title ?? '',
-                              style: const TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 18),
                             ),
-                            content: Text(recipe.course ?? ''),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min, // Columnの高さを最小限に設定
+                                children: [
+                                  Text(recipe.course ?? ''),
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity, // 画像を横いっぱいに広げる
+                                    height: 200.0, // 画像の高さを200dpに固定
+                                    child: Image.network(
+                                      recipe.photoUrl ?? '',
+                                      fit: BoxFit.cover, // 画像のフィット方法をカバーに設定
+                                      loadingBuilder: (context, child, loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return Center(child: CircularProgressIndicator());
+                                      },
+                                      errorBuilder: (context, error, stackTrace) {
+                                        return Image.asset(
+                                          'assets/images/wine_image.png', // 代替の画像ファイルパス
+                                          fit: BoxFit.cover,
+                                        );
+                                        ;
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(recipe.directions ?? ''),
+                                ],
+                              ),
+                            ),
                             actions: [
                               TextButton(
                                 onPressed: () {

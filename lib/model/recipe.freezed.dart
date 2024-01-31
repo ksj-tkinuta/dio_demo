@@ -22,6 +22,8 @@ Recipe _$RecipeFromJson(Map<String, dynamic> json) {
 mixin _$Recipe {
   String? get title => throw _privateConstructorUsedError;
   String? get course => throw _privateConstructorUsedError;
+  String? get directions => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +35,8 @@ abstract class $RecipeCopyWith<$Res> {
   factory $RecipeCopyWith(Recipe value, $Res Function(Recipe) then) =
       _$RecipeCopyWithImpl<$Res, Recipe>;
   @useResult
-  $Res call({String? title, String? course});
+  $Res call(
+      {String? title, String? course, String? directions, String? photoUrl});
 }
 
 /// @nodoc
@@ -51,6 +54,8 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
   $Res call({
     Object? title = freezed,
     Object? course = freezed,
+    Object? directions = freezed,
+    Object? photoUrl = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -60,6 +65,14 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
       course: freezed == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
+              as String?,
+      directions: freezed == directions
+          ? _value.directions
+          : directions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -72,7 +85,8 @@ abstract class _$$RecipeImplCopyWith<$Res> implements $RecipeCopyWith<$Res> {
       __$$RecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? title, String? course});
+  $Res call(
+      {String? title, String? course, String? directions, String? photoUrl});
 }
 
 /// @nodoc
@@ -88,6 +102,8 @@ class __$$RecipeImplCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? course = freezed,
+    Object? directions = freezed,
+    Object? photoUrl = freezed,
   }) {
     return _then(_$RecipeImpl(
       title: freezed == title
@@ -98,6 +114,14 @@ class __$$RecipeImplCopyWithImpl<$Res>
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
               as String?,
+      directions: freezed == directions
+          ? _value.directions
+          : directions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -105,7 +129,7 @@ class __$$RecipeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RecipeImpl with DiagnosticableTreeMixin implements _Recipe {
-  _$RecipeImpl({this.title, this.course});
+  _$RecipeImpl({this.title, this.course, this.directions, this.photoUrl});
 
   factory _$RecipeImpl.fromJson(Map<String, dynamic> json) =>
       _$$RecipeImplFromJson(json);
@@ -114,10 +138,14 @@ class _$RecipeImpl with DiagnosticableTreeMixin implements _Recipe {
   final String? title;
   @override
   final String? course;
+  @override
+  final String? directions;
+  @override
+  final String? photoUrl;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Recipe(title: $title, course: $course)';
+    return 'Recipe(title: $title, course: $course, directions: $directions, photoUrl: $photoUrl)';
   }
 
   @override
@@ -126,7 +154,9 @@ class _$RecipeImpl with DiagnosticableTreeMixin implements _Recipe {
     properties
       ..add(DiagnosticsProperty('type', 'Recipe'))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('course', course));
+      ..add(DiagnosticsProperty('course', course))
+      ..add(DiagnosticsProperty('directions', directions))
+      ..add(DiagnosticsProperty('photoUrl', photoUrl));
   }
 
   @override
@@ -135,12 +165,17 @@ class _$RecipeImpl with DiagnosticableTreeMixin implements _Recipe {
         (other.runtimeType == runtimeType &&
             other is _$RecipeImpl &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.course, course) || other.course == course));
+            (identical(other.course, course) || other.course == course) &&
+            (identical(other.directions, directions) ||
+                other.directions == directions) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, course);
+  int get hashCode =>
+      Object.hash(runtimeType, title, course, directions, photoUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +192,11 @@ class _$RecipeImpl with DiagnosticableTreeMixin implements _Recipe {
 }
 
 abstract class _Recipe implements Recipe {
-  factory _Recipe({final String? title, final String? course}) = _$RecipeImpl;
+  factory _Recipe(
+      {final String? title,
+      final String? course,
+      final String? directions,
+      final String? photoUrl}) = _$RecipeImpl;
 
   factory _Recipe.fromJson(Map<String, dynamic> json) = _$RecipeImpl.fromJson;
 
@@ -165,6 +204,10 @@ abstract class _Recipe implements Recipe {
   String? get title;
   @override
   String? get course;
+  @override
+  String? get directions;
+  @override
+  String? get photoUrl;
   @override
   @JsonKey(ignore: true)
   _$$RecipeImplCopyWith<_$RecipeImpl> get copyWith =>
