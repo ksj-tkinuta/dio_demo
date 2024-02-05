@@ -40,21 +40,46 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text('Gourmet Tips'),
         ),
-        body: Expanded(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ), // CoffeeScreenウィジェットを表示
+        body: _widgetOptions.elementAt(_selectedIndex), // CoffeeScreenウィジェットを表示
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_cafe),
+          items:  <BottomNavigationBarItem>[
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.local_cafe, size: 50.0),
               label: 'Coffee',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.wine_bar),
+              icon: Stack(
+                children: [
+                  const Icon(Icons.wine_bar, size: 50.0),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: const EdgeInsets.all(2), // バッジ内の余白
+                      constraints: const BoxConstraints(
+                        minWidth: 22, // バッジの最小幅
+                        minHeight: 22, // バッジの最小高さ
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text(
+                        '20', // 20と表示
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               label: 'Wine',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.receipt),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.receipt, size: 50.0),
               label: 'Recipe',
             ),
           ],
@@ -63,5 +88,4 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     });
-  }
-}
+  }}
